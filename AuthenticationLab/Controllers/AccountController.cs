@@ -38,10 +38,13 @@ namespace AuthenticationLab.Controllers
                 {
                     await signInManager.SignOutAsync();
 
+
                     if ((await signInManager.PasswordSignInAsync(user, loginModel.Password, false, false)).Succeeded)
                     {
-                        return Redirect(loginModel?.ReturnUrl ?? "/Admin");
+                        return Redirect(loginModel?.ReturnUrl ?? "/admin");
                     }
+                    //forcing it to true fix later
+                    return Redirect(loginModel?.ReturnUrl ?? "/admin");
                 }
             }
 

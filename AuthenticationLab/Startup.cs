@@ -1,5 +1,6 @@
 using AuthenticationLab.Data;
 using AuthenticationLab.Models;
+using AuthenticationLab.Models.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +32,7 @@ namespace AuthenticationLab
         {
             services.AddControllersWithViews();
 
+            //no touchy
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -40,8 +42,14 @@ namespace AuthenticationLab
                 options.UseMySql(Configuration["ConnectionStrings:CrashDbConnection"]);
             });
 
+            //no touchy
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddDbContext<AppIdentityDBContext>(options =>
+            {
+                options.UseSqlite(Configuration["ConnectionStrings:IdentityConnection"]);
+            });
 
             //services.AddIdentity<IdentityUser, IdentityRole>()
             //     .AddEntityFrameworkStores<AppIdentityDBContext>();
@@ -65,6 +73,8 @@ namespace AuthenticationLab
                 });
 
             services.AddScoped<ICrashRepository, EFCrashRepository>();
+
+            services.AddServerSideBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -118,7 +128,12 @@ namespace AuthenticationLab
                 //    defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
 
                 endpoints.MapRazorPages();
+
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
             });
+
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }
