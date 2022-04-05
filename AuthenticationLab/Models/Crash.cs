@@ -14,6 +14,8 @@ namespace AuthenticationLab.Models
         public string CITY { get; set; }
         public string COUNTY_NAME { get; set; }
 
+        //foreign key
         public int CRASH_SEVERITY_ID { get; set; }
+        public Severity Severity { get; set; }
     }
 }
