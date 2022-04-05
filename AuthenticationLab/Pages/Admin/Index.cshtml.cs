@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AuthenticationLab.Views.Admin
+namespace AuthenticationLab.Pages.Admin
 {
     public class IndexModel : PageModel
     {

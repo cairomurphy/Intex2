@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="bg-dark text-white p-2" style="text-align:center">
+        <span class="navbar-brand ml-2">Crashes</span>
+    </div>
+
+    <br />
+
+    <div class="row m-1 p-1">
+
+        <div>
+            @RenderBody()
+        </div>
+
+        <footer style="padding-top:50px; text-align:center;">Copyright Rootkit 2022</footer>
+    </div>
+</body>
+</html>
