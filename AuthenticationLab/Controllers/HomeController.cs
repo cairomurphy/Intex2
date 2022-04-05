@@ -34,6 +34,16 @@ namespace AuthenticationLab.Controllers
             return View();
         }
 
+        public IActionResult Safety()
+        {
+            return View();
+        }
+
+        public IActionResult Prediction()
+        {
+            return View();
+        }
+
         public IActionResult Data(string countyname, int severity, int pageNum = 1)
         {
             int pageSize = 50;
