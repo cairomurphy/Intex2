@@ -34,19 +34,29 @@ namespace AuthenticationLab.Controllers
             return View();
         }
 
-        public IActionResult Data(int pageNum = 1)
+        public IActionResult Data(string countyname, int severity, int pageNum = 1)
         {
-            int pageSize = 25;
+            int pageSize = 50;
 
             var x = new CrashesViewModel
             {
                 mytable = repo.mytable
+                .Where(x => x.COUNTY_NAME == countyname || countyname == null)
+                //.Where(x => x.CRASH_SEVERITY_ID == severity || severity == null)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumCrashes = repo.mytable.Count(),
+                    TotalNumCrashes =
+                    (countyname == null
+                    ? repo.mytable.Count()
+                    : repo.mytable.Where(x => x.COUNTY_NAME == countyname).Count()),
+                    //&&
+                    //TotalNumCrashes =
+                    //(severity == null
+                    //? repo.mytable.Count()
+                    //: repo.mytable.Where(x => x.CRASH_SEVERITY_ID == severity).Count()),
                     CrashesPerPage = pageSize,
                     CurrentPage = pageNum
                 }
