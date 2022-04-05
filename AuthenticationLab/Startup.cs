@@ -120,12 +120,12 @@ namespace AuthenticationLab
             {
                 endpoints.MapControllerRoute(
                     "countynamepage",
-                    "{COUNTY_NAME}/Page-{pageNum}",
+                    "{COUNTY_NAME}/Page={pageNum}",
                     new { Controller = "Home", action = "Data" });
 
                 endpoints.MapControllerRoute(
                     name: "Paging",
-                    pattern: "Page-{pageNum}",
+                    pattern: "Page={pageNum}",
                     defaults: new { Controller = "Home", action = "Data", pageNum = 1 });
 
                 endpoints.MapControllerRoute(
