@@ -1,0 +1,125 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*<div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
+
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+        <div class="d-flex justify-content-center">
+            <div class="text-center">
+                <h1 class="mx-auto my-0 text-uppercase">Utah Road Safety</h1>
+                <h2 class="text-white-50 mx-auto mt-2 mb-5">This is a hub for crash data, severity prediction, and safety education.</h2>
+                <a class="btn btn-primary" href="#about">Get Started</a>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- About-->
+<section class="about-section text-center" id="about">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="text-white mb-4">Built with Bootstrap 5</h2>
+                <p class="text-white-50">
+                    Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
+                    <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
+                    The theme is open source, and you can use it for any purpose, personal or commercial.
+                </p>
+            </div>
+        </div>
+        <img class="img-fluid" src="~/assets/img/ipad.png" alt="..." />
+    </div>
+</section>
+<!-- Projects-->
+<section class="projects-section bg-light" id="projects">
+    <div class="container px-4 px-lg-5">
+        <!-- Featured Project Row-->
+        <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+            <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/277737193_4857941757667785_3175108175679803503_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=730e14&_nc_ohc=bgUTmRi3wIMAX9hFXAT&_nc_ht=scontent-lax3-2.xx&oh=00_AT_2z6JnYrartFQAsJ1OgCSlD2Av9Ju6NQ4O4cT5xuzW1Q&oe=624F5EF8" alt="..." /></div>
+            <div class="col-xl-4 col-lg-5">
+                <div class="featured-text text-center text-lg-left">
+                    <h4>Crash Data</h4>
+                    <p class="text-black-50 mb-0">Click on "Data" in the menu to view Utah crash data from recent years.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Project One Row-->
+        <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+            <div class="col-lg-6"><img class="img-fluid" src="https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/277523327_4857941754334452_8411237057217452235_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=730e14&_nc_ohc=tMCK3wnhrSwAX_sbf_E&_nc_ht=scontent-lax3-2.xx&oh=00_AT_lDXrGNcrUvFyPpAP7QRvyJreN97WXl4qrqkV_GbfRdw&oe=6250F87B" alt="..." /></div>
+            <div class="col-lg-6">
+                <div class="bg-black text-center h-100 project">
+                    <div class="d-flex h-100">
+                        <div class="project-text w-100 my-auto text-center text-lg-left">
+                            <h4 class="text-white">Severity Predictor</h4>
+                            <p class="mb-0 text-white-50">Click on "Severity" in the menu to predict the severity of a road accident based on several factors.</p>
+                            <hr class="d-none d-lg-block mb-0 ms-0" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Project Two Row-->
+        <div class="row gx-0 justify-content-center">
+            <div class="col-lg-6"><img class="img-fluid" src="https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/277580066_4857941744334453_3581871655545819512_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=730e14&_nc_ohc=9Qax4E2iQ_QAX-zlm8g&_nc_ht=scontent-lax3-2.xx&oh=00_AT_Bbc1XskH2k3KadF49XmjAIFki1qAFqJQN97Axiu75nw&oe=6250CB7C" alt="..." /></div>
+            <div class="col-lg-6 order-lg-first">
+                <div class="bg-black text-center h-100 project">
+                    <div class="d-flex h-100">
+                        <div class="project-text w-100 my-auto text-center text-lg-right">
+                            <h4 class="text-white">Safety Education</h4>
+                            <p class="mb-0 text-white-50">Click on "Safety" in the menu to view general road safety recommendations.</p>
+                            <hr class="d-none d-lg-block mb-0 me-0" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact-->
+<section class="contact-section bg-black">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5">
+            <div class="col-md-4 mb-3 mb-md-0">
+                <div class="card py-4 h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+                        <h4 class="text-uppercase m-0">Address</h4>
+                        <hr class="my-4 mx-auto" />
+                        <div class="small text-black-50">2060 S 2760 W, Salt Lake City, Utah</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+                <div class="card py-4 h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-envelope text-primary mb-2"></i>
+                        <h4 class="text-uppercase m-0">Email</h4>
+                        <hr class="my-4 mx-auto" />
+                        <div class="small text-black-50"><a href="#!">contactudot@utah.gov</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+                <div class="card py-4 h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                        <h4 class="text-uppercase m-0">Phone</h4>
+                        <hr class="my-4 mx-auto" />
+                        <div class="small text-black-50">+1 (801) 887-3710</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="social d-flex justify-content-center">
+            <a class="mx-2" href="https://twitter.com/UtahDOT"><i class="fab fa-twitter"></i></a>
+            <a class="mx-2" href="https://www.facebook.com/pages/Utah-Department-of-Transportation/220792511353543"><i class="fab fa-facebook-f"></i></a>
+            <a class="mx-2" href="https://github.com/cairomurphy/IntexProject.git"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</section>
