@@ -6,4 +6,24 @@
 @{
 }
 
-<p>hey there</p>
+<!DOCTYPE html>
+
+@* ATTENTION VISITOR: I have two places where I have experimented with bootstrap classes. The first one is located on the _Layout tab and the second is on the AdminLayout.razor page. Enjoy! *@
+<html>
+
+<head>
+    <title>Crash Data Admin</title>
+    <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
+    <base href="/" />
+
+</head>
+
+<body>
+
+    <p>hello</p>
+    <component type="typeof(AuthenticationLab.Pages.Admin.Routed)" render-mode="Server" />
+    <script src="/_framework/blazor.server.js"></script>
+
+</body>
+
+</html>
