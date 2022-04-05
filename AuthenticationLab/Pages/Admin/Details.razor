@@ -1,0 +1,39 @@
+﻿@page "/admin/crashes/details/{id:long}"
+
+<h3 class="bg-info text-white text-center p-1">Details</h3>
+
+<table class="table table-sm table-bordered table-striped">
+
+    <tbody>
+        <tr><th>Crash ID:</th><td>@crash.CRASH_ID</td></tr>
+        <tr><th>Date:</th><td>@crash.CRASH_DATETIME</td></tr>
+        <tr><th>Road:</th><td>@crash.MAIN_ROAD_NAME</td></tr>
+        <tr><th>City:</th><td>@crash.CITY</td></tr>
+        <tr><th>County:</th><td>@crash.COUNTY_NAME</td></tr>
+        <tr><th>Severity:</th><td>@crash.CRASH_SEVERITY_ID</td></tr>
+        
+    </tbody>
+</table>
+
+<NavLink class="btn btn-warning" href="@EditUrl">Edit</NavLink>
+<NavLink class="btn btn-secondary" href="/admin/crashes">Back</NavLink>
+
+@code {
+
+    [Inject]
+    public ICrashRepository repo { get; set; }
+
+    [Parameter]
+    public long Id { get; set; }
+
+    public Crash crash { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        crash = repo.mytable.FirstOrDefault(x => x.CRASH_ID == Id);
+
+    }
+
+    public string EditUrl => $"/admin/crashes/edit/{crash.CRASH_ID}";
+
+}
