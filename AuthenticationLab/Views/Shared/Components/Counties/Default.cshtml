@@ -1,0 +1,17 @@
+﻿@{
+}
+
+@model IEnumerable<string>
+
+<div class="dropdown">
+    <button class="dropbtn" style="margin-left: 2rem">Filter by County</button>
+    <div class="dropdown-content">
+        <a asp-controller="Home" asp-action="Data" asp-route-countyname="" asp-route-pageNum="1" class="btn btn-secondary" style="font-size: medium">Home</a>
+
+        @foreach (string c in Model)
+        {
+            <a asp-controller="Home" asp-action="Data" asp-route-countyname="@c" asp-route-pageNum="1"
+               class="btn @(ViewBag.SelectedCounty == c ? "btn-primary" : "btn-secondary")" style="font-size: medium">@c</a>
+        }
+    </div>
+</div>
