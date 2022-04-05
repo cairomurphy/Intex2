@@ -2,6 +2,7 @@ using AuthenticationLab.Data;
 using AuthenticationLab.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -45,6 +46,13 @@ namespace AuthenticationLab
             //services.AddIdentity<IdentityUser, IdentityRole>()
             //     .AddEntityFrameworkStores<AppIdentityDBContext>();
 
+            // Sets the display of the Cookie Consent banner (/Pages/Shared/_CookieConsentPartial.cshtml).
+            // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+            services.Configure<CookiePolicyOptions>(options => {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.Strict;
+            });
+
             services.AddRazorPages();
 
             services.AddAuthentication()
@@ -66,6 +74,7 @@ namespace AuthenticationLab
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.UseCookiePolicy();
             }
             else
             {
@@ -102,6 +111,11 @@ namespace AuthenticationLab
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern: "Page-{pageNum}",
+                    defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
 
                 endpoints.MapRazorPages();
             });

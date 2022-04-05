@@ -7,7 +7,7 @@ namespace AuthenticationLab.Models
 {
     public interface ICrashRepository
     {
-        IQueryable<Crash> Crashes { get; }
+        IQueryable<Crash> mytable { get; }
 
         public void SaveCrash(Crash c);
         public void CreateCrash(Crash c);

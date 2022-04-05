@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AuthenticationLab.Models;
+using AuthenticationLab.Models.ViewModels;
 
 namespace AuthenticationLab.Controllers
 {
     public class HomeController : Controller
     {
-        private ICrashRepository _repo { get; set; }
+        private ICrashRepository repo { get; set; }
 
         public HomeController(ICrashRepository temp)
         {
-            _repo = temp;
+            repo = temp;
         }
 
         public IActionResult Index()
@@ -33,9 +34,24 @@ namespace AuthenticationLab.Controllers
             return View();
         }
 
-        public IActionResult Data()
+        public IActionResult Data(int pageNum = 1)
         {
-            return View();
+            int pageSize = 25;
+
+            var x = new CrashesViewModel
+            {
+                mytable = repo.mytable
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumCrashes = repo.mytable.Count(),
+                    CrashesPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+            return View(x);
         }
 
         public IActionResult PredictionForm()

@@ -10,6 +10,6 @@ namespace AuthenticationLab.Models
 
         }
 
-        public DbSet<Crash> Crashes { get; set; }
+        public DbSet<Crash> mytable { get; set; }
     }
 }

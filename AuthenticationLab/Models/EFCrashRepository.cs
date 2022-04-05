@@ -12,7 +12,7 @@ namespace AuthenticationLab.Models
         {
             _context = temp;
         }
-        public IQueryable<Crash> Crashes => _context.Crashes;
+        public IQueryable<Crash> mytable => _context.mytable;
 
         public void CreateCrash(Crash c)
         {
