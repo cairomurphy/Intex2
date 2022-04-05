@@ -1,0 +1,55 @@
+﻿@{
+}
+@model Crash
+<!-- Masthead-->
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="d-flex justify-content-center">
+                <div class="text-center">
+                    <h1 class="mx-auto my-0 text-uppercase">@Model.CRASH_ID</h1>
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">View the details for crash &nbsp;@Model.CRASH_ID</h2>
+                    <a class="btn btn-primary" href="#data">View Details</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--Data-->
+    <section class="about-section text-center" id="data">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8" style="color:white">
+                    <h2 class="text-white mb-4">Details</h2>
+        
+                    <h3>CRASH_DATETIME: @Model.CRASH_DATETIME</h3>
+                    <h3>MAIN_ROAD_NAME: @Model.MAIN_ROAD_NAME</h3>
+                    <h3>CITY: @Model.CITY</h3>
+                    <h3>COUNTY_NAME: @Model.COUNTY_NAME</h3>
+                    <h3>CRASH_SEVERITY_ID: @Model.CRASH_SEVERITY_ID </h3>
+                    <h3>ROUTE: @Model.ROUTE </h3>
+                    <h3> MILEPOINT: @Model.MILEPOINT </h3>
+                    <h3> LAT_UTM_Y: @Model.LAT_UTM_Y </h3>
+                    <h3>  LONG_UTM_X: @Model.LONG_UTM_X</h3>
+                    <h3> WORK_ZONE_RELATED: @Model.WORK_ZONE_RELATED </h3>
+                    <h3>PEDESTRIAN_INVOLVED: @Model.PEDESTRIAN_INVOLVED </h3>
+                    <h3> BICYCLIST_INVOLVED: @Model.BICYCLIST_INVOLVED </h3>
+                    <h3> MOTORCYCLE_INVOLVED: @Model.MOTORCYCLE_INVOLVED </h3>
+                    <h3> IMPROPER_RESTRAINT: @Model.IMPROPER_RESTRAINT </h3>
+                    <h3> UNRESTRAINED: @Model.UNRESTRAINED</h3>
+                    <h3> DUI: @Model.DUI</h3>
+                    <h3> INTERSECTION_RELATED: @Model.INTERSECTION_RELATED </h3>
+                    <h3>WILD_ANIMAL_RELATED: @Model.WILD_ANIMAL_RELATED </h3>
+                    <h3>DOMESTIC_ANIMAL_RELATED: @Model.DOMESTIC_ANIMAL_RELATED </h3>
+                    <h3>OVERTURN_ROLLOVER: @Model.OVERTURN_ROLLOVER </h3>
+                    <h3>COMMERCIAL_MOTOR_VEH_INVOLVED: @Model.COMMERCIAL_MOTOR_VEH_INVOLVED </h3>
+                    <h3>TEENAGE_DRIVER_INVOLVED: @Model.TEENAGE_DRIVER_INVOLVED </h3>
+                    <h3>OLDER_DRIVER_INVOLVED: @Model.OLDER_DRIVER_INVOLVED </h3>
+                    <h3>NIGHT_DARK_CONDITION: @Model.NIGHT_DARK_CONDITION </h3>
+                    <h3>SINGLE_VEHICLE: @Model.SINGLE_VEHICLE</h3>
+                    <h3>DISTRACTED_DRIVING: @Model.DISTRACTED_DRIVING </h3>
+                    <h3>DROWSY_DRIVING: @Model.DROWSY_DRIVING </h3>
+                    <h3>ROADWAY_DEPARTURE: @Model.ROADWAY_DEPARTURE </h3>
+                </div>
+            </div>
+        </div>
+    </section>

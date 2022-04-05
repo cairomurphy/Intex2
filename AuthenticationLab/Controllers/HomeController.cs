@@ -69,6 +69,12 @@ namespace AuthenticationLab.Controllers
             return View();
         }
 
+        public IActionResult Details(long crashid)
+        {
+            var x = repo.mytable
+                .Single(x => x.CRASH_ID == crashid);
+            return View(x);
+        }
 
 
 
