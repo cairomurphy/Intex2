@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AuthenticationLab.Models;
 using AuthenticationLab.Models.ViewModels;
+using System.Text;
 
 namespace AuthenticationLab.Controllers
 {
@@ -36,6 +37,13 @@ namespace AuthenticationLab.Controllers
 
         public IActionResult Data(string countyname, int severity, int pageNum = 1)
         {
+            StringBuilder QParam = new StringBuilder();
+            if (pageNum != 0)
+            {
+                QParam.Append($"Page=-");
+            }
+
+
             int pageSize = 50;
 
             var x = new CrashesViewModel
@@ -58,7 +66,9 @@ namespace AuthenticationLab.Controllers
                     //? repo.mytable.Count()
                     //: repo.mytable.Where(x => x.CRASH_SEVERITY_ID == severity).Count()),
                     CrashesPerPage = pageSize,
-                    CurrentPage = pageNum
+                    CurrentPage = pageNum,
+                    UrlParams = QParam.ToString(),
+                    LinksPerPage = 10
                 }
             };
             return View(x);
