@@ -34,12 +34,13 @@
             </section>
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <partial name="_LoginPartial" />
+               
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Data">Data</a></li>
                     <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="PredictionForm">Severity</a></li>
                     <li class="nav-item"><a class="nav-link">[Prediction]</a></li>
                     <li class="nav-item"><a class="nav-link">Safety</a></li>
+                    <partial name="_LoginPartial" />
                     <!--<li class="nav-item"><a class="nav-link"><i class="fa fa-user"></i>&nbsp Login</a></li>-->
                 </ul>
             </div>
