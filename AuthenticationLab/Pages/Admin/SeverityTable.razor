@@ -1,0 +1,49 @@
+﻿<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th colspan="5" class="text-center">@TableTitle</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Severities?.Count() > 0)
+        {
+            @foreach (Severity s in Severities)
+                {
+                    <tr>
+                        <td>@s.CRASH_SEVERITY_ID</td>
+                        <td>@s.SeverityName</td>
+
+                        <td>
+                            <button class="btn btn-sm btn-danger" @onclick="@(x => SeveritySelected.InvokeAsync(s.CRASH_SEVERITY_ID))">
+                                @ButtonLabel
+                            </button>
+                        </td>
+                    </tr>
+                }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No Orders</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@code {
+
+    [Parameter]
+    public string TableTitle { get; set; } = "Severities";
+
+    [Parameter]
+    public IEnumerable<Severity> Severities { get; set; }
+
+    [Parameter]
+    public string ButtonLabel { get; set; } = "Severe";
+
+    [Parameter]
+    public EventCallback<int> SeveritySelected { get; set; }
+
+}

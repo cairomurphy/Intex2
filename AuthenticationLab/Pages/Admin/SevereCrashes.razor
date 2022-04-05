@@ -1,6 +1,34 @@
 ﻿@page "/admin/severecrashes"
-@inherits OwningComponentBase<>
+@inherits OwningComponentBase<ICrashRepository>
+
+<SeverityTable TableTitle="Severe Crashes" Severities="RealSevereCrashes" ButtonLabel="Not Severe" SeveritySelected="MoveNotSevere"></SeverityTable>
+<SeverityTable TableTitle="Not Severe Crashes" Severities="NotSevereCrashes" ButtonLabel="Severe" SeveritySelected="MoveSevere"></SeverityTable>
 
 @code {
+    public ICrashRepository repo => Service;
+    public IEnumerable<Severity> AllSeverities { get; set; }
+    public IEnumerable<Severity> NotSevereCrashes { get; set; }
+    public IEnumerable<Severity> RealSevereCrashes { get; set; }
 
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        AllSeverities = await repo.Severities.ToListAsync();
+        NotSevereCrashes = AllSeverities.Where(x => x.CRASH_SEVERITY_ID < 4);
+        RealSevereCrashes = AllSeverities.Where(x => x.CRASH_SEVERITY_ID >= 4);
+    }
+
+    public void MoveNotSevere(int id) => UpdateSeverity(id);
+    public void MoveSevere(int id) => UpdateSeverity(id);
+
+    private void UpdateSeverity (int id)
+    {
+        Severity s = repo.Severities.FirstOrDefault(x => x.CRASH_SEVERITY_ID == id);
+
+        repo.SaveSeverity(s);
+    }
 }
