@@ -50,7 +50,7 @@ namespace AuthenticationLab
             // This lambda determines whether user consent for non-essential cookies is needed for a given request.
             services.Configure<CookiePolicyOptions>(options => {
                 options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.Strict;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
             services.AddRazorPages();
@@ -112,10 +112,10 @@ namespace AuthenticationLab
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapControllerRoute(
-                    name: "Paging",
-                    pattern: "Page-{pageNum}",
-                    defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
+                //endpoints.MapControllerRoute(
+                //    name: "Paging",
+                //    pattern: "Page-{pageNum}",
+                //    defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
 
                 endpoints.MapRazorPages();
             });
