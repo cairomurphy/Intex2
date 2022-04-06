@@ -13,7 +13,7 @@ namespace AuthenticationLab.Models
             _context = temp;
         }
         public IQueryable<Crash> mytable => _context.mytable;
-        public IQueryable<Severity> Severities => _context.Severities;
+    
 
         public void CreateCrash(Crash c)
         {
@@ -38,14 +38,6 @@ namespace AuthenticationLab.Models
             _context.SaveChanges();
         }
 
-        public void SaveSeverity(Severity severity)
-        {
-            if (severity.CRASH_SEVERITY_ID == 0)
-            {
-                _context.Severities.Add(severity);
-            }
-
-            _context.SaveChanges();
-        }
+       
     }
 }

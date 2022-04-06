@@ -1,44 +1,20 @@
 ﻿@inherits LayoutComponentBase
 
-@* Using a bootstrap style of breadcrumb for the links on the blazor pages- also using aria-label *@
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/home">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Admin</li>
-    </ol>
-</nav>
-
 <div class="bg-info text-white p-2">
 
-    <div class="container-fluid">
-
-        <div class="row">
-
-            <div class="col">
-                <span class="navbar-brand m-lg-2">Crash Data Administration</span>
-            </div>
-
-            <div class="col-2 text-right">
-                <a class="btn btn-sm btn-primary" href="/account/logout">Log Out</a>
-            </div>
-
-        </div>
-
-    </div>
-
+    <span class="navbar-brand m-lg-2">Crash Data Administration</span>
 
 </div>
+
+
 
 <div class="container-fluid">
 
     <div class="row p-2">
 
-        <div class="col-3">
+        <div class="col-3 d-grid">
 
-            <div class="d-grid gap-2">
-                <NavLink class="btn btn-outline-primary" href="/admin/crashes" ActiveClass="btn-primary text-white" Match="NavLinkMatch.Prefix">Crashes</NavLink>
-                @*<NavLink class="btn btn-outline-primary" href="/admin/addedbooks" ActiveClass="btn-primary text-white" Match="NavLinkMatch.Prefix">Added Books</NavLink>*@
-            </div>
+            <NavLink class="btn btn-outline-primary" href="/admin/crashes" ActiveClass="btn-primary text-white" Match="NavLinkMatch.Prefix">Crashes</NavLink>
 
         </div>
 

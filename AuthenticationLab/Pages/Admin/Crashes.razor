@@ -1,17 +1,19 @@
 ﻿@page "/admin/crashes"
 @page "/admin"
+
 @inherits OwningComponentBase<ICrashRepository>
+@*<CrashesTable TableTitle="Crashes" Crashes="AllCrashes" ButtonLabel="Crash"></CrashesTable>
+
+    <button class="btn btn-info" @onclick="@(x => UpdateData())">Refresh</button>*@
 
 <table class="table table-sm table-striped table-bordered">
 
     <thead>
         <tr>
             <th>Crash ID</th>
-            <th>Date</th>
-            <th>Road Name</th>
-            <th>City</th>
+            <th>Crash Date</th>
             <th>County</th>
-            <th>Crash Severity</th>
+            <th>Severity</th>
         </tr>
 
     </thead>
@@ -20,14 +22,12 @@
 
         @if (CrashData?.Count() > 0)
         {
-            //List crashes
+            //List books
             @foreach (Crash c in CrashData)
             {
                 <tr>
                     <td>@c.CRASH_ID</td>
                     <td>@c.CRASH_DATETIME</td>
-                    <td>@c.MAIN_ROAD_NAME</td>
-                    <td>@c.CITY</td>
                     <td>@c.COUNTY_NAME</td>
                     <td>@c.CRASH_SEVERITY_ID</td>
 
@@ -38,7 +38,7 @@
                         <NavLink class="btn btn-warning btn-sm" href="@GetEditUrl(c.CRASH_ID)">Edit</NavLink>
                     </td>
                     <td>
-                        <button class="btn btn-danger btn-sm" @onclick="@(x => RemoveCrash(c))">Delete</button>
+                        <button class="btn btn-danger btn-sm" @onclick="@(x => RemoveCrashes(c))">Delete</button>
                     </td>
                 </tr>
             }
@@ -57,6 +57,21 @@
 <NavLink class="btn btn-primary" href="/admin/crashes/create">Create</NavLink>
 
 @code {
+
+    //public ICrashRepository repo => Service;
+    //public IEnumerable<Crash> AllCrashes { get; set; }
+
+    //protected async override Task OnInitializedAsync()
+    //{
+    //    await UpdateData();
+
+    //}
+
+    //public async Task UpdateData()
+    //{
+    //    AllCrashes = await repo.mytable.ToListAsync();
+    //}
+
     public ICrashRepository repo => Service;
 
     public IEnumerable<Crash> CrashData { get; set; }
@@ -73,10 +88,9 @@
 
     public string GetDetailsUrl(long id) => $"/admin/crashes/details/{id}";
     public string GetEditUrl(long id) => $"/admin/crashes/edit/{id}";
-    public async Task RemoveCrash(Crash c)
+    public async Task RemoveCrashes(Crash c)
     {
         repo.DeleteCrash(c);
         await UpdateData();
     }
-
 }

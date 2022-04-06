@@ -2,8 +2,6 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
     <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
@@ -13,13 +11,14 @@
 
     <br />
 
-    <div class="row m-1 p-1">
 
-        <div>
-            @RenderBody()
-        </div>
-
-        <footer style="padding-top:50px; text-align:center;">Copyright Rootkit 2022</footer>
+    <div>
+        @RenderBody()
     </div>
+
+    <div>
+        <footer style="padding-top:50px; text-align:center;">Rootkit</footer>
+    </div>
+
 </body>
 </html>
