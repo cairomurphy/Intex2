@@ -35,6 +35,11 @@ namespace AuthenticationLab.Controllers
             return View();
         }
 
+        public IActionResult Statistics()
+        {
+            return View();
+        }
+
         public IActionResult Data(string countyname, int severity, int pageNum = 1)
         {
             StringBuilder QParam = new StringBuilder();
