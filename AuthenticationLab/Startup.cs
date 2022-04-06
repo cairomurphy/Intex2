@@ -43,16 +43,35 @@ namespace AuthenticationLab
             });
 
             //no touchy
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 4;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = false;
+                options.SignIn.RequireConfirmedAccount = true;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddDbContext<AppIdentityDBContext>(options =>
             {
                 options.UseSqlite(Configuration["ConnectionStrings:IdentityConnection"]);
             });
 
-            //services.AddIdentity<IdentityUser, IdentityRole>()
-            //     .AddEntityFrameworkStores<AppIdentityDBContext>();
+            //services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            //{
+            //    options.Password.RequireDigit = true;
+            //    options.Password.RequiredLength = 4;
+            //    options.Password.RequireNonAlphanumeric = true;
+            //    options.Password.RequireUppercase = true;
+            //    options.Password.RequireLowercase = false;
+            //    options.SignIn.RequireConfirmedAccount = true;
+            //})
+
+            //     .AddEntityFrameworkStores<AppIdentityDBContext>()
+            //     .AddDefaultTokenProviders();
 
             // Sets the display of the Cookie Consent banner (/Pages/Shared/_CookieConsentPartial.cshtml).
             // This lambda determines whether user consent for non-essential cookies is needed for a given request.
