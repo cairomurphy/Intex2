@@ -82,6 +82,11 @@ namespace AuthenticationLab
 
             services.AddRazorPages();
 
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
@@ -153,6 +158,7 @@ namespace AuthenticationLab
                     new { Controller = "Home", action = "Data", pageNum = 1 });
 
                 endpoints.MapRazorPages();
+
 
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
