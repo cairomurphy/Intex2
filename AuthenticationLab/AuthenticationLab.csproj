@@ -16,6 +16,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.7" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="3.1.23" />
+    <PackageReference Include="AWSSDK.Core" Version="3.7.10.3" />
+    <PackageReference Include="AWSSDK.SecretsManager" Version="3.7.2.25" />
+    <PackageReference Include="AWSSDK.SecretsManager.Caching" Version="1.0.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +27,9 @@
     <None Remove="Views\Shared\Components\" />
     <None Remove="Views\Shared\Components\Counties\" />
     <None Remove="Views\Shared\Components\Severity\" />
+    <None Remove="AWSSDK.Core" />
+    <None Remove="AWSSDK.SecretsManager" />
+    <None Remove="AWSSDK.SecretsManager.Caching" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />
