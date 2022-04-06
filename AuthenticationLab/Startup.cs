@@ -48,12 +48,14 @@ namespace AuthenticationLab
             //no touchy
             services.AddDefaultIdentity<IdentityUser>(options =>
             {
-                options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 4;
-                options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequireLowercase = false;
-                options.SignIn.RequireConfirmedAccount = true;
+            options.Password.RequireDigit = true;
+            options.Password.RequiredLength = 4;
+            options.Password.RequireNonAlphanumeric = true;
+            options.Password.RequireUppercase = true;
+            options.Password.RequireLowercase = false;
+            options.SignIn.RequireConfirmedAccount = true;
+            options.SignIn.RequireConfirmedEmail = true;
+            
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
@@ -132,12 +134,20 @@ namespace AuthenticationLab
                 context.Response.Headers.Add("X-Xss-Protection", "1");
                 await next();
             });
-            app.Use(async (ctx, next) =>
-            {
-                ctx.Response.Headers.Add("Content-Security-Policy",
-                "Content-Security-Policy: ");
-                await next();
-            });
+            //app.Use(async (ctx, next) =>
+            //{
+
+            //    ctx.Response.Headers.Add("Content-Security-Policy",
+            //    "script src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js';" +
+            //    "script src = '~/ js / scripts.js';" +
+            //    "script src = 'https://use.fontawesome.com/releases/v6.1.0/js/all.js';" +
+            //    "default-src 'self';" +
+            //    "script-src 'self';" +
+            //    "style-src 'self';" +
+            //    "img-src 'self';" +
+            //    "script-src 'self';");
+            //    await next();
+            //});
 
             app.UseAuthentication();
             app.UseAuthorization();
