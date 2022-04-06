@@ -37,9 +37,11 @@
         <vc:counties></vc:counties>
     </div>
 
-    <div class="col">
-        <a class="btn btn-primary" asp-controller="Home" asp-action="Add">Add a Crash</a>
-    </div>
+    @if (SignInManager.IsSignedIn(User)) { 
+        <div class="col">
+            <a class="btn btn-primary" asp-controller="Home" asp-action="Add">Add a Crash</a>
+        </div>
+     }
 </div>
 
 <table class="table table-dark table-hover table-sm">
