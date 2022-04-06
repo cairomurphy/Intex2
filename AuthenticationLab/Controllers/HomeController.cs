@@ -86,7 +86,59 @@ namespace AuthenticationLab.Controllers
             return View(x);
         }
 
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View(new Crash());
+        }
 
+        [HttpPost]
+        public IActionResult Add(Crash c)
+        {
+            if (ModelState.IsValid)
+            {
+                repo.CreateCrash(c);
+                repo.SaveCrash(c);
+                return RedirectToAction("Data");
+            }
+            else
+            {
+                return View(c);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int crashid)
+        {
+            var x = repo.mytable.Single(i => i.CRASH_ID == crashid);
+
+            return View("Add", x);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Crash c)
+        {
+            repo.UpdateCrash(c);
+            repo.SaveCrash(c);
+
+            return RedirectToAction("Data");
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete(int crashid)
+        {
+            var x = repo.mytable.Single(i => i.CRASH_ID == crashid);
+
+            return View(x);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Crash c)
+        {
+            repo.DeleteCrash(c);
+            return RedirectToAction("Data");
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

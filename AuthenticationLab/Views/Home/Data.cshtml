@@ -28,7 +28,17 @@
         </div>
     </div>
 </section>
-<vc:counties></vc:counties>
+
+<div class="row">
+    <div class="col">
+        <vc:counties></vc:counties>
+    </div>
+
+    <div class="col">
+        <a class="btn btn-primary" asp-controller="Home" asp-action="Add">Add a Crash</a>
+    </div>
+</div>
+
 <table class="table table-dark table-hover table-sm">
     <thead>
         <tr>
@@ -43,14 +53,16 @@
 
     @foreach (Crash c in Model.mytable)
     {
-    <tr>
-        <td><a asp-controller="Home" asp-action="Details" asp-route-crashid="@c.CRASH_ID">@c.CRASH_ID</a></td>
-        <td>@c.CRASH_DATETIME</td>
-        <td>@c.MAIN_ROAD_NAME</td>
-        <td>@c.CITY</td>
-        <td>@c.COUNTY_NAME</td>
-        <td>@c.CRASH_SEVERITY_ID</td>
-    </tr>
+<tr>
+    <td><a asp-controller="Home" asp-action="Details" asp-route-crashid="@c.CRASH_ID">@c.CRASH_ID</a></td>
+    <td>@c.CRASH_DATETIME</td>
+    <td>@c.MAIN_ROAD_NAME</td>
+    <td>@c.CITY</td>
+    <td>@c.COUNTY_NAME</td>
+    <td>@c.CRASH_SEVERITY_ID</td>
+    <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-crashid="@c.CRASH_ID">Delete</a></td>
+    <td><a class="btn btn-warning" asp-controller="Home" asp-action="Edit" asp-route-crashid="@c.CRASH_ID">Edit</a></td>
+</tr>
     }
 </table>
 
