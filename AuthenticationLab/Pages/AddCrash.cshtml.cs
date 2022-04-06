@@ -30,6 +30,7 @@ namespace AuthenticationLab.Pages
         {
             Crash c = repo.mytable.FirstOrDefault(x => x.CRASH_ID == crashId);
 
+
             //basket.AddItem(b, 1);
 
             return RedirectToPage(new { ReturnUrl = returnUrl });
