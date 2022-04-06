@@ -8,16 +8,20 @@ using Microsoft.Extensions.Logging;
 using AuthenticationLab.Models;
 using AuthenticationLab.Models.ViewModels;
 using System.Text;
+using Microsoft.ML.OnnxRuntime;
+using Microsoft.ML.OnnxRuntime.Tensors;
 
 namespace AuthenticationLab.Controllers
 {
     public class HomeController : Controller
     {
+        private InferenceSession _session;
         private ICrashRepository repo { get; set; }
 
-        public HomeController(ICrashRepository temp)
+        public HomeController(ICrashRepository temp, InferenceSession session)
         {
             repo = temp;
+            _session = session;
         }
 
         public IActionResult Index()
@@ -84,10 +88,6 @@ namespace AuthenticationLab.Controllers
             return View(x);
         }
 
-        public IActionResult PredictionForm()
-        {
-            return View();
-        }
 
         public IActionResult Details(long crashid)
         {
@@ -149,6 +149,32 @@ namespace AuthenticationLab.Controllers
             repo.DeleteCrash(c);
             return RedirectToAction("Data");
         }
+
+        //onnx
+
+        //[ApiController]
+        //[Route("/score")]
+       
+        
+        [HttpGet]
+        public IActionResult PredictionForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Prediction(CrashSeverity data)
+        {
+            var result = _session.Run(new List<NamedOnnxValue>
+            {
+                NamedOnnxValue.CreateFromTensor("boolean_input", data.AsTensor())
+            });
+            Tensor<int> score = result.First().AsTensor<int>();
+            var prediction = new Prediction { PredictedValue = score.First() * 100000 };
+            result.Dispose();
+            return Ok(prediction);
+        }
+        
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

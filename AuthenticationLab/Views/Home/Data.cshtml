@@ -33,14 +33,12 @@
 </section>
 
 <div class="row">
-    <div class="col">
-        <vc:counties></vc:counties>
-    </div>
-
+    <vc:counties></vc:counties>
+    @*<vc:severity></vc:severity>*@
     @if (SignInManager.IsSignedIn(User)) { 
-        <div class="col">
-            <a class="btn btn-primary" asp-controller="Home" asp-action="Add">Add a Crash</a>
-        </div>
+ 
+           <a class="btn btn-primary" asp-controller="Home" asp-action="Add">Add a Crash</a>
+
      }
 </div>
 

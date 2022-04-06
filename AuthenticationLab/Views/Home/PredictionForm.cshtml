@@ -1,6 +1,8 @@
 ﻿@{
 }
 
+@model CrashSeverity
+
 <!-- Masthead-->
 <header class="masthead">
     <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
@@ -21,47 +23,73 @@
             <div class="col-lg-8">
                 <h2 class="text-white mb-4">Severity Prediction: </h2>
                 <div class="text-white-50">
-                    <form style="color:white" method="post">
+                    <form style="color:white" method="post" asp-controller="Home" asp-action="Prediction">
 
                         <div class="row">
-                            <div class="col" style="margin:1rem">
-                                <label>Road:</label>
-                                <input type="text" /><br /><br />
+                            @*<div class="col" style="margin:1rem">
+            <label>Road:</label>
+            <input type="text" /><br /><br />
 
-                                <label>City:</label>
-                                <input type="text" /><br /><br />
+            <label>City:</label>
+            <input type="text" /><br /><br />
 
-                                <label>County:</label>
-                                <input type="text" /><br /><br />
+            <label>County:</label>
+            <input type="text" /><br /><br />
 
-                                <label>Date:</label>
-                                <input type="date" />
-                            </div>
+            <label>Date:</label>
+            <input type="date" />
+        </div>*@
 
                             <div class="col">
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" id="" name="">
-                                    <label for="">Funky cold Medina?</label>
+                                    <input type="checkbox" id="" name="" asp-for="pedestrian_involved" value="0">
+                                    <label for="">Pedestrian Involved?</label>
+                                </div>
+
+                                <div class="col" style="margin:1rem" >
+                                    <input type="checkbox" id="" name="" asp-for="bicyclist_involved" value="0">
+                                    <label for="">Bicyclist Involved?</label>
+                                </div>
+
+                                <div class="col" style="margin:1rem" >
+                                    <input type="checkbox" id="" name="" asp-for="motorcycle_involved" value="0">
+                                    <label for="">Motorcycle Involved?</label>
+                                </div>
+
+                                <div class="col" style="margin:1rem" >
+                                    <input type="checkbox" id="" name="" asp-for="improper_restraint" value="0">
+                                    <label for="">Improper restraint?</label>
                                 </div>
 
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" id="" name="">
-                                    <label for="">At an intersection?</label>
+                                    <input type="checkbox" id="" name="" asp-for="unrestrained" value="0">
+                                    <label for="">Unrestrained?</label>
                                 </div>
-
+                            </div>
+                            <div class="col">
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" id="" name="">
+                                    <input type="checkbox" id="" name="" asp-for="dui" value="0">
                                     <label for="">Result of DUI?</label>
                                 </div>
 
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" id="" name="">
-                                    <label for="">Animal related?</label>
+                                    <input type="checkbox" id="" name="" asp-for="intersection_related" value="0">
+                                    <label for="">At an intersection?</label>
                                 </div>
 
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" id="" name="">
-                                    <label for="">Funky cold Medina?</label>
+                                    <input type="checkbox" id="" name="" asp-for="overturn_rollover" value="0">
+                                    <label for="">Vehicle Overturned/Rolled?</label>
+                                </div>
+
+                                <div class="col" style="margin:1rem">
+                                    <input type="checkbox" id="" name="" asp-for="single_vehicle" value="0">
+                                    <label for="">Single Vehicle?</label>
+                                </div>
+
+                                <div class="col" style="margin:1rem">
+                                    <input type="checkbox" id="" name="" asp-for="roadway_departure" value="0">
+                                    <label for="">Departed from road?</label>
                                 </div>
                             </div>
 

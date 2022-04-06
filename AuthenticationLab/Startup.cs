@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.ML.OnnxRuntime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,6 +106,9 @@ namespace AuthenticationLab
 
             services.AddServerSideBlazor();
             services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
+
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("C:/Users/murph/source/repos/AuthenticationLab/AuthenticationLab/crash_severity.onnx"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
