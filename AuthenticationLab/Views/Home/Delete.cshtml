@@ -4,4 +4,32 @@
 @{
 }
 
-<p>Delete</p>
+@model Crash
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="d-flex justify-content-center">
+                <div class="text-center">
+                    <h1 class="mx-auto my-0 text-uppercase">Delete Record</h1>
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">This is a hub for crash data, severity prediction, and safety education.</h2>
+                    <a class="btn btn-primary" href="#data">Deletion Confirmation</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--Data-->
+    <section class="about-section text-center" id="data">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8">
+                    <h1 style="color:white">Are you sure you want to delete crash @Model.CRASH_ID?</h1>
+                    <form asp-action="Delete">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+
+                        <input type="hidden" asp-for="CRASH_ID" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
