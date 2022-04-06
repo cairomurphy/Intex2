@@ -42,6 +42,9 @@ namespace AuthenticationLab
                 options.UseMySql(Configuration["ConnectionStrings:CrashDbConnection"]);
             });
 
+            //services.AddDbContext<CrashDbContext>(options =>
+            //    options.UseSqlite(Configuration["ConnectionStrings:CrashDbConnection"]));
+
             //no touchy
             services.AddDefaultIdentity<IdentityUser>(options =>
             {
@@ -99,6 +102,7 @@ namespace AuthenticationLab
             services.AddScoped<ICrashRepository, EFCrashRepository>();
 
             services.AddServerSideBlazor();
+            services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -157,12 +161,14 @@ namespace AuthenticationLab
                     "{COUNTY_NAME}",
                     new { Controller = "Home", action = "Data", pageNum = 1 });
 
-                endpoints.MapRazorPages();
+                endpoints.MapDefaultControllerRoute();
 
+                endpoints.MapRazorPages();
+                
 
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
-                endpoints.MapDefaultControllerRoute();
+                
             });
 
             IdentitySeedData.EnsurePopulated(app);

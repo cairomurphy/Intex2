@@ -1,5 +1,8 @@
 ﻿@{
 }
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @model CrashesViewModel
 
@@ -43,17 +46,24 @@
 
     @foreach (Crash c in Model.mytable)
     {
-    <tr>
-        <td><a asp-controller="Home" asp-action="Details" asp-route-crashid="@c.CRASH_ID">@c.CRASH_ID</a></td>
-        <td>@c.CRASH_DATETIME</td>
-        <td>@c.MAIN_ROAD_NAME</td>
-        <td>@c.CITY</td>
-        <td>@c.COUNTY_NAME</td>
-        <td>@c.CRASH_SEVERITY_ID</td>
-    </tr>
+<tr>
+    <td><a asp-controller="Home" asp-action="Details" asp-route-crashid="@c.CRASH_ID">@c.CRASH_ID</a></td>
+    <td>@c.CRASH_DATETIME</td>
+    <td>@c.MAIN_ROAD_NAME</td>
+    <td>@c.CITY</td>
+    <td>@c.COUNTY_NAME</td>
+    <td>@c.CRASH_SEVERITY_ID</td>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <td><a asp-controller="Home" asp-action="Edit" asp-route-crashid="@c.CRASH_ID">Edit</a></td>
+        <td><a asp-controller="Home" asp-action="Delete" asp-route-crashid="@c.CRASH_ID">Delete</a></td>
+    }
+
+
+</tr>
     }
 </table>
 
 
- <div page-blah="@Model.PageInfo" page-action="Data" page-class="btn"
-    page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-classes-enabled="true" class="btn-group pull-right m-1"></div>
+<div page-blah="@Model.PageInfo" page-action="Data" page-class="btn"
+     page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-classes-enabled="true" class="btn-group pull-right m-1"></div>

@@ -96,6 +96,15 @@ namespace AuthenticationLab.Controllers
             return View(x);
         }
 
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
+        public IActionResult Delete()
+        {
+            return View();
+        }
 
 
 
