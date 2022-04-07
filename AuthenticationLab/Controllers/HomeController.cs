@@ -39,12 +39,10 @@ namespace AuthenticationLab.Controllers
             return View();
         }
 
-        public IActionResult Safety()
+        public IActionResult Statistics()
         {
             return View();
         }
-
-      
 
         public IActionResult Data(string countyname, int severity, int pageNum = 1)
         {
@@ -146,37 +144,6 @@ namespace AuthenticationLab.Controllers
             repo.DeleteCrash(c);
             return RedirectToAction("Data");
         }
-
-        //onnx
-
-        //[ApiController]
-        //[Route("/score")]
-       
-        
-        //[HttpGet]
-        //public IActionResult PredictionForm()
-        //{
-        //    return View();
-        //}
-
-        //public IActionResult Prediction()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult Prediction(CrashSeverity data)
-        //{
-        //    var result = _session.Run(new List<NamedOnnxValue>
-        //    {
-        //        NamedOnnxValue.CreateFromTensor("boolean_input", data.AsTensor())
-        //    });
-        //    Tensor<int> score = result.First().AsTensor<int>();
-        //    var prediction = new Prediction { PredictedValue = score.First() * 10000};
-        //    result.Dispose();
-        //    return Ok(prediction);
-        //}
-        
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
