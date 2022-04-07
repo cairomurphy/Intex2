@@ -18,11 +18,12 @@
 
     <style>
         .dropbtn {
-            background-color: black;
-            color: white;
+            background-color: transparent;
+            color: rgba(255, 255, 255, 0.5);
             padding: 16px;
             font-size: 16px;
             border: none;
+            line-height: 57px;
         }
 
         .dropdown {
@@ -33,7 +34,7 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #f1f1f1;
+            background-color: black;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
@@ -44,6 +45,7 @@
                 padding: 12px 16px;
                 text-decoration: none;
                 display: block;
+
             }
 
                 .dropdown-content a:hover {
@@ -55,7 +57,7 @@
         }
 
         .dropdown:hover .dropbtn {
-            background-color: #3e8e41;
+            background-color: black;
         }
 
         .cardSQL {
@@ -100,14 +102,23 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Data">Data</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="PredictionForm">Severity</a></li>
-                    <li class="nav-item"><a class="nav-link">[Prediction]</a></li>
+
+                    <li class="dropdown">
+                        <button class="dropbtn nav-item">Severity Predictors</button>
+                        <div class="dropdown-content">
+                            <a class="nav-link" asp-controller="Home" asp-action="PredictionForm">Environment</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="PredictionForm2">Location</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="PredictionForm3">Time</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="PredictionForm4">Age</a>
+                        </div>
+                    </li>
+
                     <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Statistics">Statistics</a></li>
+                
                     @*<partial name="_LoginPartial" />*@
                     <li class="nav-item"><a class="nav-link"><i class="fa fa-user"></i>&nbsp Login</a></li>
                 </ul>
             </div>
-        </div>
     </nav>
 
     @RenderBody()
