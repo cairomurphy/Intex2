@@ -40,7 +40,7 @@ namespace AuthenticationLab.Controllers
             return View();
         }
 
-        public IActionResult Data(string countyname, int severity, int pageNum = 1)
+        public IActionResult Data(string countyname, int pageNum = 1)
         {
             StringBuilder QParam = new StringBuilder();
             if (pageNum != 0)
@@ -55,7 +55,6 @@ namespace AuthenticationLab.Controllers
             {
                 mytable = repo.mytable
                 .Where(x => x.COUNTY_NAME == countyname || countyname == null)
-                //.Where(x => x.CRASH_SEVERITY_ID == severity || severity == null)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
@@ -65,17 +64,22 @@ namespace AuthenticationLab.Controllers
                     (countyname == null
                     ? repo.mytable.Count()
                     : repo.mytable.Where(x => x.COUNTY_NAME == countyname).Count()),
-                    //&&
-                    //TotalNumCrashes =
-                    //(severity == null
-                    //? repo.mytable.Count()
-                    //: repo.mytable.Where(x => x.CRASH_SEVERITY_ID == severity).Count()),
                     CrashesPerPage = pageSize,
                     CurrentPage = pageNum,
                     UrlParams = QParam.ToString(),
                     LinksPerPage = 10
                 }
             };
+
+            //var movies = from m in _context.Movie
+            //             select m;
+
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    movies = movies.Where(s => s.Title!.Contains(searchString));
+            //}
+
+            //return View(await movies.ToListAsync());
             return View(x);
         }
 
