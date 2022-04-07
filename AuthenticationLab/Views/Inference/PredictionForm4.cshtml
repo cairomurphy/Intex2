@@ -1,14 +1,14 @@
 ﻿@{
 }
 
-@model LocationSeverity
+@model AgeSeverity
 <!-- Masthead-->
 <header class="masthead">
     <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
         <div class="d-flex justify-content-center">
             <div class="text-center">
-                <h1 class="mx-auto my-0 text-uppercase">Severity Predictor</h1>
-                <h2 class="text-white-50 mx-auto mt-2 mb-5">Fill out the following information to predict the severity of an accident.</h2>
+                <h1 class="mx-auto my-0 text-uppercase">Age Severity Predictor</h1>
+                <h2 class="text-white-50 mx-auto mt-2 mb-5">Fill out the following information to predict the severity of an accident based on age.</h2>
                 <a class="btn btn-primary" href="#data">Fill out Form</a>
             </div>
         </div>
@@ -20,7 +20,7 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-lg-8">
-                <h2 class="text-white mb-4">Severity Prediction: </h2>
+                <h2 class="text-white mb-4">Age Prediction: </h2>
                 <div class="text-white-50">
                     <form style="color:white" method="post" asp-controller="Inference" asp-action="Prediction4">
 
@@ -41,34 +41,33 @@
 
                             <div class="col">
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" asp-for="intersection_related">
-                                    <label for="">Pedestrian Involved?</label>
+                                    <input type="checkbox" asp-for="improper_restraint">
+                                    <label for="">Driver improperly restrained?</label>
                                 </div>
 
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" asp-for="distracted_driving">
-                                    <label for="">Bicyclist Involved?</label>
+                                    <input type="checkbox" asp-for="unrestrained">
+                                    <label for="">Driver unrestrained?</label>
                                 </div>
 
-                                <div><input type="checkbox" asp-for="county_name_CACHE" /><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_CARBON" /><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_DAVIS"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_DUCHESNE" /><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_IRON"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_JUAB"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_MILLARD"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_OTHER"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_SALT_LAKE"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_SAN_JUAN"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_SANPETE"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_SEVIER"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_SUMMIT"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_TOOELE"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_UINTAH"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_UTAH"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_WASATCH"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_WASHINGTON"><label for="">CACHE</label></div>
-                                <div><input type="checkbox" asp-for="county_name_WEBER"><label for="">CACHE</label></div>
+                                <div class="col" style="margin:1rem">
+                                    <input type="checkbox" asp-for="dui">
+                                    <label for="">Driver unrestrained?</label>
+                                </div>
+
+                                <div class="col" style="margin:1rem">
+                                    <input type="checkbox" asp-for="teenage_driver_involved">
+                                    <label for="">Was the driver a teenage person?</label>
+                                </div>
+
+                                <div class="col" style="margin:1rem">
+                                    <input type="checkbox" asp-for="older_driver_involved">
+                                    <label for="">Was the driver an old person?</label>
+                                </div>
+
+
+
+                            </div>
 
 
                                 @*<div>

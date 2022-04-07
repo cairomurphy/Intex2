@@ -7,8 +7,8 @@
     <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
         <div class="d-flex justify-content-center">
             <div class="text-center">
-                <h1 class="mx-auto my-0 text-uppercase">Severity Predictor</h1>
-                <h2 class="text-white-50 mx-auto mt-2 mb-5">Fill out the following information to predict the severity of an accident.</h2>
+                <h1 class="mx-auto my-0 text-uppercase">Location Severity Predictor</h1>
+                <h2 class="text-white-50 mx-auto mt-2 mb-5">Fill out the following information to predict the severity of an accident based on location.</h2>
                 <a class="btn btn-primary" href="#data">Fill out Form</a>
             </div>
         </div>
@@ -20,7 +20,7 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-lg-8">
-                <h2 class="text-white mb-4">Severity Prediction: </h2>
+                <h2 class="text-white mb-4">Location Prediction: </h2>
                 <div class="text-white-50">
                     <form style="color:white" method="post" asp-controller="Inference" asp-action="Prediction2">
 
@@ -42,12 +42,12 @@
                             <div class="col">
                                 <div class="col" style="margin:1rem">
                                     <input type="checkbox" asp-for="intersection_related">
-                                    <label for="">Pedestrian Involved?</label>
+                                    <label for="">At an intersection?</label>
                                 </div>
 
                                 <div class="col" style="margin:1rem">
                                     <input type="checkbox" asp-for="distracted_driving">
-                                    <label for="">Bicyclist Involved?</label>
+                                    <label for="">Driver distracted?</label>
                                 </div>
 
                                 <div><input type="checkbox" asp-for="county_name_CACHE" /><label for="">CACHE</label></div>

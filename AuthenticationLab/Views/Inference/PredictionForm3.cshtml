@@ -1,0 +1,158 @@
+﻿@{
+}
+
+@model TimeSeverity
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+        <div class="d-flex justify-content-center">
+            <div class="text-center">
+                <h1 class="mx-auto my-0 text-uppercase">Time Severity Predictor</h1>
+                <h2 class="text-white-50 mx-auto mt-2 mb-5">Fill out the following information to predict the severity of an accident based on time.</h2>
+                <a class="btn btn-primary" href="#data">Fill out Form</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!--Data-->
+<section class="about-section text-center" id="data">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="text-white mb-4">Time Prediction: </h2>
+                <div class="text-white-50">
+                    <form style="color:white" method="post" asp-controller="Inference" asp-action="Prediction4">
+
+                        <div class="row">
+                            @*<div class="col" style="margin:1rem">
+                                    <label>Road:</label>
+                                    <input type="text" /><br /><br />
+
+                                    <label>City:</label>
+                                    <input type="text" /><br /><br />
+
+                                    <label>County:</label>
+                                    <input type="text" /><br /><br />
+
+                                    <label>Date:</label>
+                                    <input type="date" />
+                                </div>*@
+
+                            <div class="col">
+                                <div class="col" style="margin:1rem">
+                                    <input type="number" asp-for="night_dark_condition">
+                                    <label for="">Driving conditions at night?</label>
+                                </div>
+
+                                <div class="col" style="margin:1rem">
+                                    <input type="number" asp-for="drowsy_driving">
+                                    <label for="">Driver is drowsy?</label>
+                                </div>
+
+                                <div class="col" style="margin:1rem">
+                                    <input type="number" asp-for="month">
+                                    <label for="">What is the month?</label>
+                                </div>
+
+                                <div class="col" style="margin:1rem">
+                                    <input type="number" asp-for="day">
+                                    <label for="">Ehat is the time of day?</label>
+                                </div>
+
+                                <div class="col" style="margin:1rem">
+                                    <input type="number" asp-for="hour">
+                                    <label for="">What is the hour?</label>
+                                </div>
+
+
+
+                            </div>
+
+
+                            @*<div>
+
+                                    <select name="County">
+
+                                        <option asp-for="county_name_CACHE">CACHE</option>
+                                        <option asp-for="county_name_CARBON">CARBON</option>
+                                        <option asp-for="county_name_DAVIS">DAVIS</option>
+                                        <option asp-for="county_name_DUCHESNE">DUCHESNE</option>
+                                        <option asp-for="county_name_IRON">IRON</option>
+                                        <option asp-for="county_name_JUAB">JUAB</option>
+                                        <option asp-for="county_name_MILLARD">MILLARD</option>
+                                        <option asp-for="county_name_OTHER">OTHER</option>
+                                        <option asp-for="county_name_SALT_LAKE">SALT_LAKE</option>
+                                        <option asp-for="county_name_SAN_JUAN">SAN_JUAN</option>
+                                        <option asp-for="county_name_SANPETE">SANPETE</option>
+                                        <option asp-for="county_name_SEVIER">SEVIER</option>
+                                        <option asp-for="county_name_SUMMIT">SUMMIT</option>
+                                        <option asp-for="county_name_TOOELE">TOOELE</option>
+                                        <option asp-for="county_name_UINTAH">UINTAH</option>
+                                        <option asp-for="county_name_UTAH">UTAH</option>
+                                        <option asp-for="county_name_WASATCH">WASATCH</option>
+                                        <option asp-for="county_name_WASHINGTON">WASHINGTON</option>
+                                        <option asp-for="county_name_WEBER">WEBER</option>
+
+                                    </select>
+                                </div>*@
+                            @*<div class="col" style="margin:1rem">
+                                            <input type="checkbox" asp-for="motorcycle_involved">
+                                            <label for="">Motorcycle Involved?</label>
+                                        </div>
+
+                                        <div class="col" style="margin:1rem">
+                                            <input type="checkbox" asp-for="improper_restraint">
+                                            <label for="">Improper restraint?</label>
+                                        </div>
+
+                                        <div class="col" style="margin:1rem">
+                                            <input type="checkbox" asp-for="unrestrained">
+                                            <label for="">Unrestrained?</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="col" style="margin:1rem">
+                                            <input type="checkbox" asp-for="dui">
+                                            <label for="">Result of DUI?</label>
+                                        </div>
+
+                                        <div class="col" style="margin:1rem">
+                                            <input type="checkbox" asp-for="intersection_related">
+                                            <label for="">At an intersection?</label>
+                                        </div>
+
+                                        <div class="col" style="margin:1rem">
+                                            <input type="checkbox" asp-for="overturn_rollover">
+                                            <label for="">Vehicle Overturned/Rolled?</label>
+                                        </div>
+
+                                        <div class="col" style="margin:1rem">
+                                            <input type="checkbox" asp-for="single_vehicle">
+                                            <label for="">Single Vehicle?</label>
+                                        </div>
+
+                                        <div class="col" style="margin:1rem">
+                                            <input type="checkbox" asp-for="roadway_departure">
+                                            <label for="">Departed from road?</label>
+                                        </div>
+                                    </div>
+
+                                </div>*@
+                            @*<div class="row">
+                                    <div class="col" style="margin:1rem">
+                                        <label>County:</label>
+                                        <input type="text" />
+                                    </div>
+
+                                    <div class="col">
+                                        <input type="hidden" />
+                                    </div>
+                                </div>*@
+                            <button type="submit" class="btn btn-primary" style="margin:1rem">Get Prediction</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -125,6 +125,10 @@ namespace AuthenticationLab
             //prediction4
             services.AddSingleton<InferenceSession>(
                 new InferenceSession("wwwroot/age_crash_severity.onnx"));
+
+            //prediction3
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("wwwroot/time_crash_severity.onnx"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
