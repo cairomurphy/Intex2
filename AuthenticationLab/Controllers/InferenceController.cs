@@ -73,7 +73,7 @@ namespace aspnetcore.Controllers
         {
             var result = _session.Run(new List<NamedOnnxValue>
             {
-                NamedOnnxValue.CreateFromTensor("int_input", data.AsTensor())
+                NamedOnnxValue.CreateFromTensor("boolean_input", data.AsTensor())
             });
             Tensor<float> score = result.First().AsTensor<float>();
             var prediction = new Prediction { PredictedValue4 = score.First() };
@@ -88,19 +88,19 @@ namespace aspnetcore.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Prediction3(TimeSeverity data)
-        {
-            var result = _session.Run(new List<NamedOnnxValue>
-            {
-                NamedOnnxValue.CreateFromTensor("boolean_input", data.AsTensor())
-            });
-            Tensor<float> score = result.First().AsTensor<float>();
-            var prediction = new Prediction { PredictedValue3 = score.First() };
-            ViewBag.PredictedValue3 = prediction.PredictedValue3;
-            result.Dispose();
-            return View("Prediction3");
-        }
+        //[HttpPost]
+        //public IActionResult Prediction3(TimeSeverity data)
+        //{
+        //    var result = _session.Run(new List<NamedOnnxValue>
+        //    {
+        //        NamedOnnxValue.CreateFromTensor("int64_input", data.AsTensor())
+        //    });
+        //    Tensor<float> score = result.First().AsTensor<float>();
+        //    var prediction = new Prediction { PredictedValue3 = score.First() };
+        //    ViewBag.PredictedValue3 = prediction.PredictedValue3;
+        //    result.Dispose();
+        //    return View("Prediction3");
+        //}
     }
 
         

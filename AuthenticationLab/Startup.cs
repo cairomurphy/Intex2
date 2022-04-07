@@ -35,13 +35,13 @@ namespace AuthenticationLab
             services.AddControllersWithViews();
 
             //dallan
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseMySql(
-            //        Configuration.GetConnectionString("DefaultConnection")));
-            //cairo
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
+                options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
+            //cairo
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("DefaultConnection")));
 
             //put connection string back in
             services.AddDbContext<CrashDbContext>(options =>
