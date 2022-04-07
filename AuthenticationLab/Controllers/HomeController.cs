@@ -10,6 +10,7 @@ using AuthenticationLab.Models.ViewModels;
 using System.Text;
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AuthenticationLab.Controllers
 {
@@ -91,12 +92,14 @@ namespace AuthenticationLab.Controllers
             return View(x);
         }
 
+    
         [HttpGet]
         public IActionResult Add()
         {
             return View(new Crash());
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Add(Crash c)
         {
@@ -112,6 +115,7 @@ namespace AuthenticationLab.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Edit(int crashid)
         {
@@ -130,6 +134,7 @@ namespace AuthenticationLab.Controllers
         }
 
 
+        [Authorize]
         [HttpGet]
         public IActionResult Delete(int crashid)
         {
