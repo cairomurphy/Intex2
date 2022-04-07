@@ -108,8 +108,10 @@ namespace AuthenticationLab
             services.AddServerSideBlazor();
             services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
 
+
+            //change stuff
             services.AddSingleton<InferenceSession>(
-                new InferenceSession("C:/Users/murph/source/repos/AuthenticationLab/AuthenticationLab/wwwroot/onnx/crash_severity.onnx"));
+                new InferenceSession("wwwroot/crash_severity.onnx"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -128,7 +130,8 @@ namespace AuthenticationLab
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //possible problem here:
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -139,35 +142,29 @@ namespace AuthenticationLab
                 context.Response.Headers.Add("X-Xss-Protection", "1");
                 await next();
             });
-            //app.Use(async (ctx, next) =>
-            //{
 
-            //    ctx.Response.Headers.Add("Content-Security-Policy",
-            //    "script src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js';" +
-            //    "script src = '~/ js / scripts.js';" +
-            //    "script src = 'https://use.fontawesome.com/releases/v6.1.0/js/all.js';" +
-            //    "default-src 'self';" +
-            //    "script-src 'self';" +
-            //    "style-src 'self';" +
-            //    "img-src 'self';" +
-            //    "script-src 'self';");
-            //    await next();
-            //});
-
-            //loose
+            //csp header
             app.Use(async (ctx, next) =>
             {
-                ctx.Response.Headers.Add("Content-Security-Policy",
-                "default-src * data: blob: filesystem: about: ws: wss: 'unsafe-inline' 'unsafe-eval' 'unsafe-dynamic';" +
-                "script-src * data: blob: 'unsafe-inline' 'unsafe-eval';" +
-                "connect-src * data: blob: 'unsafe-inline';" +
-                "img-src * data: blob: 'unsafe-inline';" +
-                "frame-src * data: blob:;" +
-                "style-src * data: blob: 'unsafe-inline';" +
-                "font-src * data: blob: 'unsafe-inline';" +
-                "frame-ancestors * data: blob: 'unsafe-inline';");
+                ctx.Response.Headers.Add("Content-Security-Policy-Report-Only",
+                    "default-src 'self'; report-uri /cspreport");
                 await next();
             });
+
+            //csp loose
+            //app.Use(async (ctx, next) =>
+            //{
+            //    ctx.Response.Headers.Add("Content-Security-Policy",
+            //    "default-src * data: blob: filesystem: about: ws: wss: 'unsafe-inline' 'unsafe-eval' 'unsafe-dynamic';" +
+            //    "script-src * data: blob: 'unsafe-inline' 'unsafe-eval';" +
+            //    "connect-src * data: blob: 'unsafe-inline';" +
+            //    "img-src * data: blob: 'unsafe-inline';" +
+            //    "frame-src * data: blob:;" +
+            //    "style-src * data: blob: 'unsafe-inline';" +
+            //    "font-src * data: blob: 'unsafe-inline';" +
+            //    "frame-ancestors * data: blob: 'unsafe-inline';");
+            //    await next();
+            //});
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -205,7 +202,7 @@ namespace AuthenticationLab
                 
             });
 
-            IdentitySeedData.EnsurePopulated(app);
+            //IdentitySeedData.EnsurePopulated(app);
         }
     }
 }
