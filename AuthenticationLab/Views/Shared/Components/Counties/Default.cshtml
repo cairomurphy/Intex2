@@ -3,9 +3,9 @@
 
 @model IEnumerable<string>
 
-<div class="dropdown">
-    <button class="dropbtn" style="margin-left: 2rem">Filter by County</button>
-    <div class="dropdown-content">
+<div class="dropdownfilter">
+    <button class="dropbtnfilter" style="margin-left: 1rem; margin-top: 1rem; margin-bottom: 1rem;">Filter by County</button>
+    <div class="dropdown-contentfilter">
         <a asp-controller="Home" asp-action="Data" asp-route-countyname="" asp-route-pageNum="1" class="btn btn-secondary" style="font-size: medium">Home</a>
 
         @foreach (string c in Model)
