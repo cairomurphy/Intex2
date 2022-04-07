@@ -15,13 +15,13 @@ namespace AuthenticationLab.Controllers
 {
     public class HomeController : Controller
     {
-        private InferenceSession _session;
+        //private InferenceSession _session;
         private ICrashRepository repo { get; set; }
 
-        public HomeController(ICrashRepository temp, InferenceSession session)
+        public HomeController(ICrashRepository temp /*InferenceSession session*/)
         {
             repo = temp;
-            _session = session;
+            //_session = session;
         }
 
         public IActionResult Index()
@@ -44,10 +44,7 @@ namespace AuthenticationLab.Controllers
             return View();
         }
 
-        public IActionResult Prediction()
-        {
-            return View();
-        }
+      
 
         public IActionResult Data(string countyname, int severity, int pageNum = 1)
         {
@@ -156,24 +153,29 @@ namespace AuthenticationLab.Controllers
         //[Route("/score")]
        
         
-        [HttpGet]
-        public IActionResult PredictionForm()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult PredictionForm()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public ActionResult Prediction(CrashSeverity data)
-        {
-            var result = _session.Run(new List<NamedOnnxValue>
-            {
-                NamedOnnxValue.CreateFromTensor("boolean_input", data.AsTensor())
-            });
-            Tensor<int> score = result.First().AsTensor<int>();
-            var prediction = new Prediction { PredictedValue = score.First() * 100000 };
-            result.Dispose();
-            return Ok(prediction);
-        }
+        //public IActionResult Prediction()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public ActionResult Prediction(CrashSeverity data)
+        //{
+        //    var result = _session.Run(new List<NamedOnnxValue>
+        //    {
+        //        NamedOnnxValue.CreateFromTensor("boolean_input", data.AsTensor())
+        //    });
+        //    Tensor<int> score = result.First().AsTensor<int>();
+        //    var prediction = new Prediction { PredictedValue = score.First() * 10000};
+        //    result.Dispose();
+        //    return Ok(prediction);
+        //}
         
 
 

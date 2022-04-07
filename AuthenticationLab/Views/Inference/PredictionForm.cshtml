@@ -23,7 +23,7 @@
             <div class="col-lg-8">
                 <h2 class="text-white mb-4">Severity Prediction: </h2>
                 <div class="text-white-50">
-                    <form style="color:white" method="post" asp-controller="Home" asp-action="Prediction">
+                    <form style="color:white" method="post" asp-controller="Inference" asp-action="Prediction">
 
                         <div class="row">
                             @*<div class="col" style="margin:1rem">
@@ -42,53 +42,53 @@
 
                             <div class="col">
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" id="" name="" asp-for="pedestrian_involved" value="0">
+                                    <input type="checkbox" asp-for="pedestrian_involved">
                                     <label for="">Pedestrian Involved?</label>
                                 </div>
 
                                 <div class="col" style="margin:1rem" >
-                                    <input type="checkbox" id="" name="" asp-for="bicyclist_involved" value="0">
+                                    <input type="checkbox"  asp-for="bicyclist_involved" >
                                     <label for="">Bicyclist Involved?</label>
                                 </div>
 
                                 <div class="col" style="margin:1rem" >
-                                    <input type="checkbox" id="" name="" asp-for="motorcycle_involved" value="0">
+                                    <input type="checkbox" asp-for="motorcycle_involved" >
                                     <label for="">Motorcycle Involved?</label>
                                 </div>
 
                                 <div class="col" style="margin:1rem" >
-                                    <input type="checkbox" id="" name="" asp-for="improper_restraint" value="0">
+                                    <input type="checkbox" asp-for="improper_restraint" >
                                     <label for="">Improper restraint?</label>
                                 </div>
 
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" id="" name="" asp-for="unrestrained" value="0">
+                                    <input type="checkbox" asp-for="unrestrained" >
                                     <label for="">Unrestrained?</label>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" id="" name="" asp-for="dui" value="0">
+                                    <input type="checkbox" asp-for="dui" >
                                     <label for="">Result of DUI?</label>
                                 </div>
 
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" id="" name="" asp-for="intersection_related" value="0">
+                                    <input type="checkbox" asp-for="intersection_related" >
                                     <label for="">At an intersection?</label>
                                 </div>
 
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" id="" name="" asp-for="overturn_rollover" value="0">
+                                    <input type="checkbox" asp-for="overturn_rollover" >
                                     <label for="">Vehicle Overturned/Rolled?</label>
                                 </div>
 
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" id="" name="" asp-for="single_vehicle" value="0">
+                                    <input type="checkbox" asp-for="single_vehicle" >
                                     <label for="">Single Vehicle?</label>
                                 </div>
 
                                 <div class="col" style="margin:1rem">
-                                    <input type="checkbox" id="" name="" asp-for="roadway_departure" value="0">
+                                    <input type="checkbox" asp-for="roadway_departure" >
                                     <label for="">Departed from road?</label>
                                 </div>
                             </div>

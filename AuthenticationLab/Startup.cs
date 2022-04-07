@@ -176,6 +176,10 @@ namespace AuthenticationLab
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Inference}/{action=PredictionForm}/{id}");
+
+                endpoints.MapControllerRoute(
                     "countynamepage",
                     "{COUNTY_NAME}/Page={pageNum}",
                     new { Controller = "Home", action = "Data" });
