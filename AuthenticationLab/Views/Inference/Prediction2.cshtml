@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.PredictedValue = Math.Clamp(Math.Round(ViewBag.PredictedValue), 1, 5);
+    ViewBag.PredictedValue2 = Math.Clamp(Math.Round(ViewBag.PredictedValue), 1, 5);
 }
 
 @model AuthenticationLab.Models.Prediction
@@ -8,8 +8,8 @@
     <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
         <div class="d-flex justify-content-center">
             <div class="text-center">
-                <h1 class="mx-auto my-0 text-uppercase"> severity - @ViewBag.PredictedValue</h1>
-                <h2 class="text-white-50 mx-auto mt-2 mb-5" style="color: white">The predicted severity based on your choices is @ViewBag.PredictedValue.</h2>
+                <h1 class="mx-auto my-0 text-uppercase"> severity - @ViewBag.PredictedValue2</h1>
+                <h2 class="text-white-50 mx-auto mt-2 mb-5" style="color: white">The predicted severity based on your choices is @ViewBag.PredictedValue2.</h2>
                 <a class="btn btn-primary" href="#data">View Severity Rating</a>
             </div>
         </div>
@@ -22,7 +22,7 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-lg-8">
-                <h2 class="text-white mb-4">Predicted Severity: @ViewBag.PredictedValue</h2>
+                <h2 class="text-white mb-4">Predicted Severity: @ViewBag.PredictedValue2</h2>
             </div>
         </div>
     </div>

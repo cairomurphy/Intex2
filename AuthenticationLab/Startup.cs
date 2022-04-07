@@ -99,7 +99,7 @@ namespace AuthenticationLab
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddAuthentication();
+            //services.AddAuthentication();
             //    .AddGoogle(options =>
             //    {
             //        IConfigurationSection googleAuthNSection =
@@ -117,6 +117,9 @@ namespace AuthenticationLab
             //change stuff
             services.AddSingleton<InferenceSession>(
                 new InferenceSession("wwwroot/crash_severity.onnx"));
+
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("wwwroot/distracted_crash_severity.onnx"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

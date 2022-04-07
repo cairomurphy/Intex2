@@ -47,6 +47,14 @@ namespace aspnetcore.Controllers
         [HttpPost]
         public IActionResult Prediction2(LocationSeverity data)
         {
+            var result = _session.Run(new List<NamedOnnxValue>
+            {
+                NamedOnnxValue.CreateFromTensor("boolean_input", data.AsTensor())
+            });
+            Tensor<float> score = result.First().AsTensor<float>();
+            var prediction = new Prediction { PredictedValue = score.First() };
+            ViewBag.PredictedValue = prediction.PredictedValue;
+            result.Dispose();
             return View("Prediction2");
         }
     }
