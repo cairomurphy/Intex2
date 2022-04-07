@@ -37,6 +37,18 @@ namespace aspnetcore.Controllers
             result.Dispose();
             return View("Prediction");
         }
+
+        [HttpGet]
+        public IActionResult PredictionForm2()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Prediction2(LocationSeverity data)
+        {
+            return View("Prediction2");
+        }
     }
 
         
