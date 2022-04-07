@@ -67,7 +67,7 @@
 
     public async Task UpdateData()
     {
-        CrashData = await repo.mytable.ToListAsync();
+        CrashData = await repo.mytable.Take(50).ToListAsync();
     }
 
     public string GetDetailsUrl(long id) => $"/admin/crashes/details/{id}";

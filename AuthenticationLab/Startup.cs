@@ -34,11 +34,16 @@ namespace AuthenticationLab
         {
             services.AddControllersWithViews();
 
-            //no touchy
+            //dallan
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseMySql(
+            //        Configuration.GetConnectionString("DefaultConnection")));
+            //cairo
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+            //put connection string back in
             services.AddDbContext<CrashDbContext>(options =>
             {
                 options.UseMySql(Configuration["ConnectionStrings:CrashDbConnection"]);
@@ -62,10 +67,10 @@ namespace AuthenticationLab
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddDbContext<AppIdentityDBContext>(options =>
-            {
-                options.UseSqlite(Configuration["ConnectionStrings:IdentityConnection"]);
-            });
+            //services.AddDbContext<AppIdentityDBContext>(options =>
+            //{
+            //    options.UseSqlite(Configuration["ConnectionStrings:IdentityConnection"]);
+            //});
 
             //services.AddIdentity<IdentityUser, IdentityRole>(options =>
             //{
@@ -94,14 +99,14 @@ namespace AuthenticationLab
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    IConfigurationSection googleAuthNSection =
-                        Configuration.GetSection("Authentication:Google");
-                    options.ClientId = googleAuthNSection["ClientId"];
-                    options.ClientSecret = googleAuthNSection["ClientSecret"];
-                });
+            services.AddAuthentication();
+            //    .AddGoogle(options =>
+            //    {
+            //        IConfigurationSection googleAuthNSection =
+            //            Configuration.GetSection("Authentication:Google");
+            //        options.ClientId = googleAuthNSection["ClientId"];
+            //        options.ClientSecret = googleAuthNSection["ClientSecret"];
+            //    });
 
             services.AddScoped<ICrashRepository, EFCrashRepository>();
 
