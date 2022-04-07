@@ -18,6 +18,8 @@ namespace aspnetcore.Controllers
             _session = session;
         }
 
+
+        //Prediction for Severity
         [HttpGet]
         public IActionResult PredictionForm()
         {
@@ -38,6 +40,7 @@ namespace aspnetcore.Controllers
             return View("Prediction");
         }
 
+        //Prediction for Location
         [HttpGet]
         public IActionResult PredictionForm2()
         {
@@ -52,10 +55,23 @@ namespace aspnetcore.Controllers
                 NamedOnnxValue.CreateFromTensor("boolean_input", data.AsTensor())
             });
             Tensor<float> score = result.First().AsTensor<float>();
-            var prediction = new Prediction { PredictedValue = score.First() };
-            ViewBag.PredictedValue = prediction.PredictedValue;
+            var prediction = new Prediction { PredictedValue2 = score.First() };
+            ViewBag.PredictedValue2 = prediction.PredictedValue2;
             result.Dispose();
             return View("Prediction2");
+        }
+
+        //Prediction for Age
+        [HttpGet]
+        public IActionResult PredictionForm4()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Prediction4()
+        {
+            return View();
         }
     }
 

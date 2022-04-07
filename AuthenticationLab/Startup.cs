@@ -114,12 +114,17 @@ namespace AuthenticationLab
             services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
 
 
-            //change stuff
+            //prediction1
             services.AddSingleton<InferenceSession>(
                 new InferenceSession("wwwroot/crash_severity.onnx"));
 
+            //prediction2
             services.AddSingleton<InferenceSession>(
                 new InferenceSession("wwwroot/distracted_crash_severity.onnx"));
+
+            //prediction4
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("wwwroot/age_crash_severity.onnx"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
