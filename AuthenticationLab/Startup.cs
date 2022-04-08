@@ -34,6 +34,16 @@ namespace AuthenticationLab
         {
             services.AddControllersWithViews();
 
+            //var server = Environment.GetEnvironmentVariable("RDS_SERVER");
+            //var server1 = Environment.GetEnvironmentVariable("RDS_SERVER1");
+            //var port = Environment.GetEnvironmentVariable("RDS_PORT");
+            //var port1 = Environment.GetEnvironmentVariable("RDS_PORT1");
+            //var password = Environment.GetEnvironmentVariable("RDS_PASSWORD");
+            //var password1 = Environment.GetEnvironmentVariable("RDS_PASSWORD1");
+            //var database = Environment.GetEnvironmentVariable("RDS_DATABASE");
+            //var database1 = Environment.GetEnvironmentVariable("RDS_DATABASE1");
+            //var user = Environment.GetEnvironmentVariable("RDS_USER");
+            //var user1 = Environment.GetEnvironmentVariable("RDS_USER1");
             //dallan
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(
@@ -119,16 +129,16 @@ namespace AuthenticationLab
                 new InferenceSession("wwwroot/crash_severity.onnx"));
 
             //prediction2
-            services.AddSingleton<InferenceSession>(
-                new InferenceSession("wwwroot/distracted_crash_severity.onnx"));
+            //services.AddSingleton<InferenceSession>(
+            //    new InferenceSession("wwwroot/distracted_crash_severity.onnx"));
 
-            //prediction4
-            services.AddSingleton<InferenceSession>(
-                new InferenceSession("wwwroot/age_crash_severity.onnx"));
+            ////prediction4
+            //services.AddSingleton<InferenceSession>(
+            //    new InferenceSession("wwwroot/age_crash_severity.onnx"));
 
-            //prediction3
-            services.AddSingleton<InferenceSession>(
-                new InferenceSession("wwwroot/time_crash_severity.onnx"));
+            ////prediction3
+            //services.AddSingleton<InferenceSession>(
+            //    new InferenceSession("wwwroot/time_crash_severity.onnx"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
