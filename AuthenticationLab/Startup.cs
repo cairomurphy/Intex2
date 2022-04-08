@@ -129,12 +129,12 @@ namespace AuthenticationLab
                 new InferenceSession("wwwroot/crash_severity.onnx"));
 
             //prediction2
-            //services.AddSingleton<InferenceSession>(
-            //    new InferenceSession("wwwroot/distracted_crash_severity.onnx"));
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("wwwroot/distracted_crash_severity.onnx"));
 
-            ////prediction4
-            //services.AddSingleton<InferenceSession>(
-            //    new InferenceSession("wwwroot/age_crash_severity.onnx"));
+            //prediction4
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("wwwroot/age_crash_severity.onnx"));
 
             ////prediction3
             //services.AddSingleton<InferenceSession>(
