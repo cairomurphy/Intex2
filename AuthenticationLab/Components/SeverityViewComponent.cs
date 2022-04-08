@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AuthenticationLab.Components
 {
+
+    //SEVERITY COMPONENT TO BE DROPPED IN
+
     public class SeverityViewComponent : ViewComponent
     {
         private ICrashRepository repo { get; set; }

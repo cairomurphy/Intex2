@@ -10,6 +10,8 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+@*DELETES BASED ON IF ADMIN OR NOT*@
+
 @if (SignInManager.IsSignedIn(User))
 {
     <!-- Masthead-->

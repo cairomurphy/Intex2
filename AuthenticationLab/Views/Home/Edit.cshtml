@@ -6,6 +6,8 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+@*EDITS BASED ON IF ADMIN OR NOT*@
+
 @if (SignInManager.IsSignedIn(User))
 {
 

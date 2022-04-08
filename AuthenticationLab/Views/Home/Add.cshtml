@@ -6,6 +6,8 @@
 
 @model Crash
 
+@*ONLY ADD OR EDIT CRASHES IF ADMIN*@
+
 @if (SignInManager.IsSignedIn(User))
 {
     <!-- Masthead-->
@@ -26,6 +28,8 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-lg-8" style="color: white">
                     <form method="post">
+                        <div asp-validation-summary="All"></div>
+
                         <div>
                             <label asp-for="CRASH_ID">Crash ID: </label>
                             <input asp-for="CRASH_ID" type="number" />

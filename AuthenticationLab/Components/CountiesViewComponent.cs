@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AuthenticationLab.Components
 {
+
+    //COUNTY COMPONENT TO BE DROPPED IN
+
     public class CountiesViewComponent : ViewComponent 
     {
         private ICrashRepository repo { get; set; }

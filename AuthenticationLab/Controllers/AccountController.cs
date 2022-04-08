@@ -10,6 +10,8 @@ using AuthenticationLab.Models.ViewModels;
 
 namespace AuthenticationLab.Controllers
 {
+    //ACCOUNT LOGIN FOR BLAZOR BETA IDENTITY
+
     public class AccountController : Controller
     {
         private UserManager<IdentityUser> userManager;

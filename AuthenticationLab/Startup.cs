@@ -29,40 +29,42 @@ namespace AuthenticationLab
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
 
-            //var server = Environment.GetEnvironmentVariable("RDS_SERVER");
-            //var server1 = Environment.GetEnvironmentVariable("RDS_SERVER1");
-            //var port = Environment.GetEnvironmentVariable("RDS_PORT");
-            //var port1 = Environment.GetEnvironmentVariable("RDS_PORT1");
-            //var password = Environment.GetEnvironmentVariable("RDS_PASSWORD");
-            //var password1 = Environment.GetEnvironmentVariable("RDS_PASSWORD1");
-            //var database = Environment.GetEnvironmentVariable("RDS_DATABASE");
-            //var database1 = Environment.GetEnvironmentVariable("RDS_DATABASE1");
-            //var user = Environment.GetEnvironmentVariable("RDS_USER");
-            //var user1 = Environment.GetEnvironmentVariable("RDS_USER1");
-            //dallan
+            //SETS UP DEPLOYMENT
+            var server = Environment.GetEnvironmentVariable("RDS_SERVER");
+            var server1 = Environment.GetEnvironmentVariable("RDS_SERVER1");
+            var port = Environment.GetEnvironmentVariable("RDS_PORT");
+            var port1 = Environment.GetEnvironmentVariable("RDS_PORT1");
+            var password = Environment.GetEnvironmentVariable("RDS_PASSWORD");
+            var password1 = Environment.GetEnvironmentVariable("RDS_PASSWORD1");
+            var database = Environment.GetEnvironmentVariable("RDS_DATABASE");
+            var database1 = Environment.GetEnvironmentVariable("RDS_DATABASE1");
+            var user = Environment.GetEnvironmentVariable("RDS_USER");
+            var user1 = Environment.GetEnvironmentVariable("RDS_USER1");
+
+            //DEFAULT CONNECTION
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            //cairo
+                options.UseMySql("server=" + server1 + ";port=" + port1 + ";database=" + database1 + ";user=" + user1 + ";password=" + password1));
+
+            //cairo testing connection
             //services.AddDbContext<ApplicationDbContext>(options =>
             //    options.UseSqlServer(
             //        Configuration.GetConnectionString("DefaultConnection")));
 
-            //put connection string back in
+            //CRASH CONNECTION
             services.AddDbContext<CrashDbContext>(options =>
             {
-                options.UseMySql(Configuration["ConnectionStrings:CrashDbConnection"]);
+                options.UseMySql("server=" + server + ";port=" + port + ";database=" + database + ";user=" + user + ";password=" + password);
             });
 
+            //old connection string
             //services.AddDbContext<CrashDbContext>(options =>
             //    options.UseSqlite(Configuration["ConnectionStrings:CrashDbConnection"]));
 
-            //no touchy
+            //PASSWORD OPTIONS
             services.AddDefaultIdentity<IdentityUser>(options =>
             {
             options.Password.RequireDigit = true;
@@ -76,6 +78,8 @@ namespace AuthenticationLab
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            //BETA LOGIN FOR BLAZOR IDENTITY
 
             //services.AddDbContext<AppIdentityDBContext>(options =>
             //{
@@ -95,8 +99,7 @@ namespace AuthenticationLab
             //     .AddEntityFrameworkStores<AppIdentityDBContext>()
             //     .AddDefaultTokenProviders();
 
-            // Sets the display of the Cookie Consent banner (/Pages/Shared/_CookieConsentPartial.cshtml).
-            // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+            //SETS COOKIES
             services.Configure<CookiePolicyOptions>(options => {
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
@@ -109,6 +112,8 @@ namespace AuthenticationLab
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+
+            //GOOGLE AUTHENTICATION THAT WE HAD WORKING IN DEVELOPMENT BUT NOT IN PRODUCTION
             //services.AddAuthentication();
             //    .AddGoogle(options =>
             //    {
@@ -124,53 +129,55 @@ namespace AuthenticationLab
             services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
 
 
-            //prediction1
-            services.AddSingleton<InferenceSession>(
-                new InferenceSession("wwwroot/crash_severity.onnx"));
-
-            //prediction2
-            services.AddSingleton<InferenceSession>(
-                new InferenceSession("wwwroot/distracted_crash_severity.onnx"));
-
-            //prediction4
-            services.AddSingleton<InferenceSession>(
-                new InferenceSession("wwwroot/age_crash_severity.onnx"));
-
-            ////prediction3
+            // ONNX FILE CONNECTIONS
+            ////prediction1
             //services.AddSingleton<InferenceSession>(
-            //    new InferenceSession("wwwroot/time_crash_severity.onnx"));
+            //    new InferenceSession("wwwroot/crash_severity.onnx"));
+
+            ////prediction2
+            //services.AddSingleton<InferenceSession>(
+            //    new InferenceSession("wwwroot/distracted_crash_severity.onnx"));
+
+            ////prediction4
+            //services.AddSingleton<InferenceSession>(
+            //    new InferenceSession("wwwroot/age_crash_severity.onnx"));
+
+            //////prediction3
+            ////services.AddSingleton<InferenceSession>(
+            ////    new InferenceSession("wwwroot/time_crash_severity.onnx"));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+
+                //USE COOKIES
                 app.UseCookiePolicy();
             }
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+               
                 app.UseHsts();
             }
 
-            //possible problem here:
+            //possible problem here: NOT FOR PRODUCTION
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
-            //security
+            //XSS PROTECTION
             app.Use(async (context, next) =>
             {
                 context.Response.Headers.Add("X-Xss-Protection", "1");
                 await next();
             });
 
-            //csp header
+            //CSP HEADER
             app.Use(async (ctx, next) =>
             {
                 ctx.Response.Headers.Add("Content-Security-Policy-Report-Only",
@@ -178,24 +185,10 @@ namespace AuthenticationLab
                 await next();
             });
 
-            //csp loose
-            //app.Use(async (ctx, next) =>
-            //{
-            //    ctx.Response.Headers.Add("Content-Security-Policy",
-            //    "default-src * data: blob: filesystem: about: ws: wss: 'unsafe-inline' 'unsafe-eval' 'unsafe-dynamic';" +
-            //    "script-src * data: blob: 'unsafe-inline' 'unsafe-eval';" +
-            //    "connect-src * data: blob: 'unsafe-inline';" +
-            //    "img-src * data: blob: 'unsafe-inline';" +
-            //    "frame-src * data: blob:;" +
-            //    "style-src * data: blob: 'unsafe-inline';" +
-            //    "font-src * data: blob: 'unsafe-inline';" +
-            //    "frame-ancestors * data: blob: 'unsafe-inline';");
-            //    await next();
-            //});
-
             app.UseAuthentication();
             app.UseAuthorization();
 
+            //USE HSTS
             app.UseHsts();
 
             app.UseEndpoints(endpoints =>

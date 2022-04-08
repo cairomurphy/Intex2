@@ -5,17 +5,23 @@ namespace AuthenticationLab.Models
 {
     public class Crash
     {
+        //WITH VALIDATION
 
         [Key]
-        [Required]
+        [Required(ErrorMessage = "Please enter an ID")]
         public long CRASH_ID { get; set; }
+        [Required(ErrorMessage = "Please enter a date")]
         public string CRASH_DATETIME { get; set; }
+        [Required(ErrorMessage = "Please enter a road name")]
         public string MAIN_ROAD_NAME { get; set; }
+        [Required(ErrorMessage = "Please enter a city")]
         public string CITY { get; set; }
+        [Required(ErrorMessage = "Please enter a county")]
         public string COUNTY_NAME { get; set; }
 
-        
+        [Required(ErrorMessage = "Please enter a route")]
         public string ROUTE { get; set; }
+        [Required(ErrorMessage = "Please enter a milepoint (3.2)")]
         public double MILEPOINT { get; set; }
         public double LAT_UTM_Y { get; set; }
         public double LONG_UTM_X { get; set; }

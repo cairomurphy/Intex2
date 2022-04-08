@@ -8,6 +8,8 @@ using AuthenticationLab.Models.ViewModels;
 
 namespace AuthenticationLab.Infrastructure
 {
+    //PAGINATION WORKS
+
     [HtmlTargetElement("div", Attributes = "page-blah")]
 
     public class PaginationTagHelper : TagHelper
